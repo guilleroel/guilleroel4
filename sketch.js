@@ -13,9 +13,9 @@ let song; // Música de fondo
 
 // Colores para las palabras
 let wordColors = {
-  "INSPO": [218, 94, 230],   // Rosa
-  "ARTISTS": [132, 94, 214], // Purple
-  "CREATE": [118, 197, 219] // Orange
+  "INSPO": [218, 94, 230],   // Azul
+  "ARTISTS": [132, 94, 214], // Rojo
+  "CREATE": [118, 197, 219] // Amarillo
 };
 
 function preload() {
@@ -58,6 +58,14 @@ function draw() {
   if (allRevealed) {
     isRevealed = true;
     noLoop(); // Detener el dibujo, haciendo el texto estático
+    setTimeout(() => {
+      window.location.href = "https://p5js.org/"; // Redirigir a YouTube
+    }, 1000); // Espera 1 segundo antes de redirigir
+  } else if (isResetting) {
+    // Si no se ha formado la palabra, dispersar las partículas para formar la siguiente
+    isResetting = false;
+    generateTextParticles(currentWord); // Regenerar las partículas
+    loop(); // Continuar la animación
   }
 }
 
